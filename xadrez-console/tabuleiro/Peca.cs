@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using tabuleiro;
 
-namespace xadrez_console.tabuleiro
+namespace tabuleiro
 {
     class Peca
     {
@@ -20,6 +20,11 @@ namespace xadrez_console.tabuleiro
             Cor = cor;
             QtdMovimentos = 0;
             Tabuleiro = tabuleiro;
+        }
+
+        public void IncrementarQtdMovimentos()
+        {
+            QtdMovimentos++;
         }
     }
 }

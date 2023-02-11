@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
-using xadrez_console.tabuleiro;
+using tabuleiro;
 
 namespace tabuleiro
 {
@@ -40,10 +41,22 @@ namespace tabuleiro
         {
             if (ExistePeca(posicao))
             {
-                throw new TabuleiroException("Já existe uma peça nesta podição");
+                throw new TabuleiroException("Já existe uma peça nesta posição");
             }
             Pecas[posicao.Linha, posicao.Coluna] = peca;
             peca.Posicao = posicao;
+        }
+
+        public Peca RetirarPeca(Posicao posicao)
+        {
+            if (Peca(posicao) == null)
+            {
+                return null;
+            }
+            Peca auxiliar = Peca(posicao);
+            auxiliar.Posicao = null;
+            Pecas[posicao.Linha, posicao.Coluna] = null;
+            return auxiliar;
         }
 
         public bool PosicaoValida(Posicao posicao)
