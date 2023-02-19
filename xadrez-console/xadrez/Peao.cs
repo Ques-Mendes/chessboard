@@ -4,17 +4,11 @@ namespace xadrez
 {
     class Peao : Peca
     {
-        public Peao(Tabuleiro tabuleiro, Cor cor): base(cor, tabuleiro) { }
+        public Peao(Tabuleiro tabuleiro, Cor cor): base(tabuleiro, cor) { }
 
         public override string ToString()
         {
             return "P";
-        }
-
-        private bool PodeMover(Posicao posicao)
-        {
-            Peca peca = Tabuleiro.Peca(posicao);
-            return peca != null && peca.Cor != Cor;
         }
 
         private bool ExisteInimigo(Posicao posicao)
@@ -31,6 +25,7 @@ namespace xadrez
         public override bool[,] MovimentosPossiveis()
         {
             bool[,] matriz = new bool[Tabuleiro.Linhas, Tabuleiro.Colunas];
+
             Posicao posicao = new Posicao(0, 0);
 
             if (Cor == Cor.Branca)
@@ -40,16 +35,20 @@ namespace xadrez
                 {
                     matriz[posicao.Linha, posicao.Coluna] = true;
                 }
+
                 posicao.DefinirValores(posicao.Linha - 2, posicao.Coluna);
-                if (Tabuleiro.PosicaoValida(posicao) && Livre(posicao) && QtdMovimentos == 0)
+                Posicao posicao2 = new Posicao(posicao.Linha - 1, posicao.Coluna);
+                if (Tabuleiro.PosicaoValida(posicao2) && Livre(posicao2) && Tabuleiro.PosicaoValida(posicao) && Livre(posicao) && QtdMovimentos == 0)
                 {
                     matriz[posicao.Linha, posicao.Coluna] = true;
                 }
+
                 posicao.DefinirValores(posicao.Linha - 1, posicao.Coluna - 1);
                 if (Tabuleiro.PosicaoValida(posicao) && ExisteInimigo(posicao))
                 {
                     matriz[posicao.Linha, posicao.Coluna] = true;
                 }
+
                 posicao.DefinirValores(posicao.Linha - 1, posicao.Coluna + 1);
                 if (Tabuleiro.PosicaoValida(posicao) && ExisteInimigo(posicao))
                 {
@@ -63,16 +62,20 @@ namespace xadrez
                 {
                     matriz[posicao.Linha, posicao.Coluna] = true;
                 }
+
                 posicao.DefinirValores(posicao.Linha + 2, posicao.Coluna);
-                if (Tabuleiro.PosicaoValida(posicao) && Livre(posicao) && QtdMovimentos == 0)
+                Posicao posicao2 = new Posicao(posicao.Linha + 1, posicao.Coluna);
+                if (Tabuleiro.PosicaoValida(posicao2) && Livre(posicao2) && Tabuleiro.PosicaoValida(posicao) && Livre(posicao) && QtdMovimentos == 0)
                 {
                     matriz[posicao.Linha, posicao.Coluna] = true;
                 }
+
                 posicao.DefinirValores(posicao.Linha + 1, posicao.Coluna - 1);
                 if (Tabuleiro.PosicaoValida(posicao) && ExisteInimigo(posicao))
                 {
                     matriz[posicao.Linha, posicao.Coluna] = true;
                 }
+
                 posicao.DefinirValores(posicao.Linha + 1, posicao.Coluna + 1);
                 if (Tabuleiro.PosicaoValida(posicao) && ExisteInimigo(posicao))
                 {

@@ -7,12 +7,12 @@
         public int QtdMovimentos { get; protected set; }
         public Tabuleiro Tabuleiro { get; protected set; }
 
-        public Peca(Cor cor, Tabuleiro tabuleiro)
+        public Peca(Tabuleiro tabuleiro, Cor cor)
         {
             Posicao = null;
+            Tabuleiro = tabuleiro;
             Cor = cor;
             QtdMovimentos = 0;
-            Tabuleiro = tabuleiro;
         }
 
         public void IncrementarQtdMovimentos()

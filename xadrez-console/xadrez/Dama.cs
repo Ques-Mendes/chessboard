@@ -5,7 +5,7 @@ namespace xadrez
 {
     class Dama : Peca
     {
-        public Dama(Tabuleiro tabuleiro, Cor cor) : base (cor, tabuleiro) { }
+        public Dama(Tabuleiro tabuleiro, Cor cor) : base (tabuleiro, cor) { }
 
         public override string ToString()
         {
@@ -45,6 +45,18 @@ namespace xadrez
                     break;
                 }
                 posicao.DefinirValores(posicao.Linha, posicao.Coluna + 1);
+            }
+
+            // acima
+            posicao.DefinirValores(posicao.Linha - 1, posicao.Coluna);
+            while (Tabuleiro.PosicaoValida(posicao) && PodeMover(posicao))
+            {
+                matriz[posicao.Linha, posicao.Coluna] = true;
+                if (Tabuleiro.Peca(posicao) != null && Tabuleiro.Peca(posicao).Cor != Cor)
+                {
+                    break;
+                }
+                posicao.DefinirValores(posicao.Linha - 1, posicao.Coluna);
             }
 
             // abaixo

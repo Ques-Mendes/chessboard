@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using tabuleiro;
 using xadrez;
 
@@ -94,7 +91,7 @@ namespace xadrez_console
                 }
                 Console.WriteLine();
             }
-            Console.WriteLine(" a b c d e f g h");
+            Console.WriteLine("  a b c d e f g h");
             Console.BackgroundColor = fundoOriginal;
         }
 

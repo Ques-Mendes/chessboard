@@ -4,7 +4,7 @@ namespace xadrez
 {
     class Torre : Peca
     {
-        public Torre(Tabuleiro tabuleiro, Cor cor) : base(cor, tabuleiro)
+        public Torre(Tabuleiro tabuleiro, Cor cor) : base(tabuleiro, cor)
         { }
         public override string ToString()
         {
@@ -13,8 +13,8 @@ namespace xadrez
 
         private bool PodeMover(Posicao posicao)
         {
-            Peca p = Tabuleiro.Peca(posicao);
-            return p == null || p.Cor != Cor;
+            Peca peca = Tabuleiro.Peca(posicao);
+            return peca == null || peca.Cor != Cor;
         }
 
         public override bool[,] MovimentosPossiveis()
@@ -32,7 +32,7 @@ namespace xadrez
                 {
                     break;
                 }
-                posicao.Linha = posicao.Linha - 1;
+                posicao.Linha--;
             }
 
             // abaixo
@@ -44,7 +44,7 @@ namespace xadrez
                 {
                     break;
                 }
-                posicao.Linha = posicao.Linha + 1;
+                posicao.Linha++;
             }
 
             // direita
@@ -56,7 +56,7 @@ namespace xadrez
                 {
                     break;
                 }
-                posicao.Coluna = posicao.Coluna + 1;
+                posicao.Coluna++;
             }
 
             // esquerda
@@ -68,7 +68,7 @@ namespace xadrez
                 {
                     break;
                 }
-                posicao.Coluna = posicao.Coluna - 1;
+                posicao.Coluna--;
             }
 
             return matriz;
