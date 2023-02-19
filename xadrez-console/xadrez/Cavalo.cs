@@ -2,13 +2,13 @@
 
 namespace xadrez
 {
-    class Rei : Peca
+    class Cavalo : Peca
     {
-        public Rei(Tabuleiro tabuleiro, Cor cor) : base(cor, tabuleiro)
-        { }
+        public Cavalo(Tabuleiro tabuleiro, Cor cor) : base(cor, tabuleiro) { }
+
         public override string ToString()
         {
-            return "R";
+            return "C";
         }
 
         private bool PodeMover(Posicao posicao)
@@ -23,57 +23,43 @@ namespace xadrez
 
             Posicao posicao = new Posicao(0, 0);
 
-            // acima
-            posicao.DefinirValores(posicao.Linha - 1, posicao.Coluna);
+            posicao.DefinirValores(posicao.Linha - 1, posicao.Coluna - 2);
             if (Tabuleiro.PosicaoValida(posicao) && PodeMover(posicao))
             {
                 matriz[posicao.Linha, posicao.Coluna] = true;
             }
 
-            // ne
-            posicao.DefinirValores(posicao.Linha - 1, posicao.Coluna + 1);
+            posicao.DefinirValores(posicao.Linha - 2, posicao.Coluna - 1);
             if (Tabuleiro.PosicaoValida(posicao) && PodeMover(posicao))
             {
                 matriz[posicao.Linha, posicao.Coluna] = true;
             }
 
-            // direita
-            posicao.DefinirValores(posicao.Linha, posicao.Coluna + 1);
+            posicao.DefinirValores(posicao.Linha - 2, posicao.Coluna + 1);
             if (Tabuleiro.PosicaoValida(posicao) && PodeMover(posicao))
             {
                 matriz[posicao.Linha, posicao.Coluna] = true;
             }
 
-            // se
-            posicao.DefinirValores(posicao.Linha + 1, posicao.Coluna + 1);
+            posicao.DefinirValores(posicao.Linha - 1, posicao.Coluna + 2);
             if (Tabuleiro.PosicaoValida(posicao) && PodeMover(posicao))
             {
                 matriz[posicao.Linha, posicao.Coluna] = true;
             }
 
-            // abaixo
-            posicao.DefinirValores(posicao.Linha + 1, posicao.Coluna);
+            posicao.DefinirValores(posicao.Linha + 2, posicao.Coluna + 1);
             if (Tabuleiro.PosicaoValida(posicao) && PodeMover(posicao))
             {
                 matriz[posicao.Linha, posicao.Coluna] = true;
             }
 
-            // so
-            posicao.DefinirValores(posicao.Linha + 1, posicao.Coluna - 1);
+            posicao.DefinirValores(posicao.Linha + 2, posicao.Coluna - 1);
             if (Tabuleiro.PosicaoValida(posicao) && PodeMover(posicao))
             {
                 matriz[posicao.Linha, posicao.Coluna] = true;
             }
 
-            // esquerda
-            posicao.DefinirValores(posicao.Linha, posicao.Coluna - 1);
-            if (Tabuleiro.PosicaoValida(posicao) && PodeMover(posicao))
-            {
-                matriz[posicao.Linha, posicao.Coluna] = true;
-            }
-
-            // no
-            posicao.DefinirValores(posicao.Linha - 1, posicao.Coluna - 1);
+            posicao.DefinirValores(posicao.Linha + 1, posicao.Coluna - 2);
             if (Tabuleiro.PosicaoValida(posicao) && PodeMover(posicao))
             {
                 matriz[posicao.Linha, posicao.Coluna] = true;
